@@ -1,0 +1,16 @@
+celery
+coverage
+flake8
+Flask
+Flask-Cors
+Flask-Mail
+pandas
+pre-commit
+pyflakes
+pylint
+pymongo
+pytest
+python-dotenv
+redis
+
+

@@ -1,0 +1,32 @@
+[flake8]
+# Ignorar os seguintes erros e avisos:
+# E203: Espaço em branco antes dos dois pontos (comum em alguns estilos de formatação)
+# E266: Comentário muito longo (#######)
+# E501: Linha muito longa (definiremos um limite diferente abaixo)
+# W503: Quebra de linha antes de um operador binário (preferimos W504)
+# F403: 'from module import *' usado (não recomendado, mas pode ser necessário em alguns casos)
+# F401: Módulo importado mas não utilizado (útil para o desenvolvimento)
+
+ignore = E203, E266, E501, W503, F403, F401
+
+# Definir o comprimento máximo de uma linha de código
+max-line-length = 120
+
+# Definir a complexidade ciclomática máxima permitida
+max-complexity = 10
+
+# Selecionar quais categorias de verificações devem ser realizadas
+select = B,C,E,F,W,T4,B9
+
+# Adicionar algumas configurações adicionais específicas
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    migrations
+
+# Ajustes específicos para avisos de tipo e outras configurações
+enable-extensions = G
+application-import-names = myapp,anotherapp
+import-order-style = google

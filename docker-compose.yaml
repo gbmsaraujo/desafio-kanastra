@@ -1,0 +1,50 @@
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+      - ./backend/src/assets:/app/src/assets
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+      - redis
+
+  celery-processing:
+    build: ./backend
+    command: celery -A celery_worker.celery worker -l info -Q processing
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+
+  celery-email-sending:
+    build: ./backend
+    command: celery -A celery_worker.celery worker -l info -Q email_sending
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - '8080:8080'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+
+volumes:
+  data:
+  logs:

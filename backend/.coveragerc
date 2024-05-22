@@ -1,0 +1,10 @@
+[run]
+omit =
+    src/__init__.py
+    src/**/__init__.py
+    src/data/config
+    src/constants
+    src/drivers
+    src/main/adapter
+    src/main/compose
+    src/main/config
